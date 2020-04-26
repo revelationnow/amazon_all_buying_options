@@ -1,0 +1,122 @@
+<meta charset="utf-8"/>
+<html>
+<head>
+    <title>Amazon all buying options link generator</title>
+    <script>
+    function generate_all_buying_options_link()
+    {
+        var orig_link = document.getElementById("original_link").value;
+        let re = new RegExp('.*amazon\.com.*\/dp\/([a-zA-Z0-9]+)\/.*');
+        var temp = re.exec(orig_link);
+        console.log(orig_link);
+        console.log(temp[1]);
+        //TODO: Follow the link, find the link to lowest offer buttons and use that link instead
+        var mod_link = 'https://www.amazon.com/gp/offer-listing/' + temp[1];
+        document.getElementById('convert').innerHTML = 'Link to page with lower offers: <a href="' + mod_link + '" target="_blank">' + mod_link + '</a>';
+
+    }
+    </script>
+
+    <style>
+        #submit_button:hover {
+	        margin: 0 auto;
+	        height: 50px;
+	        color: #000;
+	        background-color: #AA9546;
+	        border: 0px;
+	        width: 100%;
+	        font-size: 1.2em;
+	        font-family: Helvetica;
+            background:linear-gradient(to bottom,#f1cf55,#f0c14b);
+        }
+
+        #submit_button {
+	        margin: 0 auto;
+	        height: 50px;
+	        color: #000;
+	        box-shadow:0 1px 0 rgba(255,255,255,.4) inset;
+	        background:linear-gradient(to bottom,#f7dfa5,#f0c14b);
+	        border: 1px;
+	        width: 100%;
+	        font-size: 1.2em;
+	        font-family: Helvetica;
+	        border-radius:5px;
+	        border-color: #a88734 #9c7e31 #846a29;
+            border-top-color: rgb(168, 135, 52);
+            border-right-color: rgb(156, 126, 49);
+            border-bottom-color: rgb(132, 106, 41);
+            border-left-color: rgb(156, 126, 49);
+        }
+        #input_wrapper {
+            border:1px #ccc solid;
+            padding:2px;
+            background-color:#fff;
+        }
+
+        #convert {
+            font-size:1.2em;
+            font-family:arial;
+            text-align:center;
+            border:1px #ccc solid;
+            padding:12px 12px;
+            background-color:#fff;
+        }
+
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 12px 12px 12px;
+            border: 0px;
+            display: inline-block;
+            font-size:1.2em;
+            font-family:Helvetica;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+
+        div {
+            border-radius: 5px;
+            background-color: #232F3E;
+            padding: 20px;
+        }
+
+        #content_wrapper {
+            text-align:center;
+            width:70%;
+            margin: 0 auto;
+        }
+
+        body {
+            background-color: #91d1FF;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id='content_wrapper'>
+<div id='input_wrapper'>
+<input type='text' id='original_link' placeholder="Enter link to Amazon product page"> <br><br>
+</div>
+<button onclick="generate_all_buying_options_link()" id='submit_button'>Click to get link to page with lowest offer on this amazon product</button>
+
+<div id='convert'>
+    Link to page with lower offers:
+</div>
+</div>
+</body>
+</html>
